@@ -10,7 +10,7 @@
             <strong>Send Mail/Text Message</strong>
           </div>
           <div class="card-body p-2">
-            <form>
+            <form method="POST">
               <div class="form-group">
                 <label for="name"><strong>Name :</strong></label>
                 <input id="name" class="person-name form-control" placeholder="Enter a name" type="text" />
@@ -32,18 +32,24 @@
                 <label for="add-text"><strong>Text Area :</strong> </label>
                 <textarea id="text-message" class="form-control" type="text" rows="10" cols="65"></textarea>
               </div>
-              <div class="float-right">
-                <button class="btn btn-success btn-lg" id="send-btn">
-                  <span class="fa fa-mail"></span>Send
-                </button>
+              <div class="row">
+                <div class="col-md-10">
+                  <label for="exampleFormControlFile1"></label>
+                  <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                </div>
+                <div class="col-md-2">
+                  <button class="btn btn-success btn-lg float-right" id="send-btn"><i class="fa fa-send"
+                      aria-hidden="true"></i></button>
+                </div>
               </div>
-            </form>
           </div>
+          </form>
         </div>
       </div>
     </div>
   </div>
 </div>
+</div>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
+<script src="/js/mail.js"></script>

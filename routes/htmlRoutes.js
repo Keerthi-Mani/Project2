@@ -5,6 +5,15 @@ module.exports = function (app) {
   app.get("/", function (req, res) {
     // db.Evasion.findAll({}).then(function (dbEvasion) {
     res.render("index", {
+
+      // examples: dbEvasion
+      // });
+    });
+  });
+
+  app.get("/send-email", function (req, res) {
+    // db.Evasion.findAll({}).then(function (dbEvasion) {
+    res.render("index", {
       msg: "Welcome!",
       // examples: dbEvasion
       // });
