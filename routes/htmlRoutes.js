@@ -11,6 +11,11 @@ module.exports = function (app) {
     });
   });
 
+  // Load text message page
+  app.get('/text', function (req, res) {
+    res.render("textmessage")
+  })
+
   // Load example page and pass in an example by id
   app.get("/example/:id", function (req, res) {
     db.Evasion.findOne({
