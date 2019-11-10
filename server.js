@@ -11,8 +11,8 @@ var db = require("./models");
 
 // Init Nexmo
 const nexmo = new Nexmo({
-  apiKey: '9ba76b67',
-  apiSecret: 'oZyNOI3BymZvVQwb'
+  apiKey: 'API KEY HERE',
+  apiSecret: 'API KEY HERE'
 }, { debug: true });
 
 var app = express();
