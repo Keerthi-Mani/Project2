@@ -1,6 +1,6 @@
 var db = require("../models");
 var sgMail = require('@sendgrid/mail');
-
+var Evasion = require("../models/evasion");
 module.exports = function (app) {
   // Get all mails
   app.get("/all", function (req, res) {
@@ -10,22 +10,33 @@ module.exports = function (app) {
   });
   // Get mails by name
   app.get("/sendemail/:name", function (req, res) {
-    // db.Evasion.findOne({
-    //   where: {
-    //     category: req.params.contact_name
-    //   }
-    // }).then(function (dbEvasion) {
-    //   res.json(dbEvasion);
-    // });
+    db.Evasion.findOne({
+      where: {
+        contact_name: req.params.contact_name
+      }
+    }).then(function (dbEvasion) {
+      res.json(dbEvasion);
+    });
   });
 
   //Send-mails
   app.post("/sendemail", function (req, res, next) {
-    db.sequelize.query("INSERT INTO sequelize_evasion.evasions (contact_name, contact_email, contact_relation, message, createdAt, updatedAt) VALUES('" + req.body.contact_name + "', '" + req.body.contact_email + "', '" + req.body.contact_relation + "', '" + req.body.message + "','2019-11-01 06:00:00','2019-11-01 06:00:00')", function (err) {
-      if (err) {
-        console.log(err.message);
-      }
+    // db.sequelize.query("INSERT INTO sequelize_evasion.evasions (contact_name, contact_email, contact_relation, message, createdAt, updatedAt) VALUES('" + req.body.contact_name + "', '" + req.body.contact_email + "', '" + req.body.contact_relation + "', '" + req.body.message + "','2019-11-01 06:00:00','2019-11-01 06:00:00')", function (err) {
+    //   if (err) {
+    //     console.log(err.message);
+    //   }
+    // });
+    db.Evasion.create({
+      contact_name: req.body.contact_name,
+      contact_email: req.body.contact_email,
+      contact_relation: req.body.contact_relation,
+      message: req.body.message
+    }).then(function (results) {
+      console.log(results);
+      res.json(results);
     });
+
+
     sgMail.setApiKey("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");
     sendMail(req.body.contact_email, req.body.contact_subject, req.body.message, req.body.attachment_data, req.body.attachment_filename);
     console.log(req.body);
@@ -68,7 +79,7 @@ module.exports = function (app) {
   //}
 
   // Delete the mail by id
-  app.delete("/send-email/:id", function (req, res) {
+  app.delete("/sendemail/:id", function (req, res) {
     db.Evasion.destroy({
       where: {
         id: req.params.id

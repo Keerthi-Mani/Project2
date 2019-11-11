@@ -1,5 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
-  var Evasion = sequelize.define("evasion", {
+  var Evasion = sequelize.define("Evasion", {
 
     contact_name: {
       type: DataTypes.STRING,
@@ -26,6 +26,8 @@ module.exports = function (sequelize, DataTypes) {
         len: [1]
       }
     }
+  }, {
+    timestamp: false
   });
   return Evasion;
 };

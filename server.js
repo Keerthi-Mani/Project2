@@ -1,7 +1,8 @@
 require("dotenv").config();
 var express = require("express");
 var exphbs = require("express-handlebars");
-
+var sgMail = require('@sendgrid/mail');
+var nodeMailer = require("nodemailer");
 var bodyParser = require("body-parser");
 var db = require("./models");
 
