@@ -4,8 +4,8 @@ var Nexmo = require('nexmo');
 module.exports = function (app) {
     // Init Nexmo
     const nexmo = new Nexmo({
-        apiKey: '33b708bd',
-        apiSecret: '7zZGIIqDfAOwIUKs'
+        apiKey: '',
+        apiSecret: ''
     }, {
         debug: true
     });
@@ -17,7 +17,7 @@ module.exports = function (app) {
         } = req.body;
 
         nexmo.message.sendSms(
-            '15413207560', number, text, {
+            '', number, text, {
                 type: 'unicode'
             },
             (err, responseData) => {
