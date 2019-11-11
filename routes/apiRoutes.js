@@ -37,7 +37,7 @@ module.exports = function (app) {
     });
 
 
-    sgMail.setApiKey("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");
+    sgMail.setApiKey("");
     sendMail(req.body.contact_email, req.body.contact_subject, req.body.message, req.body.attachment_data, req.body.attachment_filename);
     console.log(req.body);
   });
