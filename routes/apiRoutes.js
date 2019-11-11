@@ -1,3 +1,4 @@
+//Dependencies
 var db = require("../models");
 var sgMail = require('@sendgrid/mail');
 var Evasion = require("../models/evasion");
@@ -18,8 +19,7 @@ module.exports = function (app) {
       res.json(dbEvasion);
     });
   });
-
-  //Send-mails
+  //Create new mails in the database
   app.post("/sendemail", function (req, res, next) {
     // db.sequelize.query("INSERT INTO sequelize_evasion.evasions (contact_name, contact_email, contact_relation, message, createdAt, updatedAt) VALUES('" + req.body.contact_name + "', '" + req.body.contact_email + "', '" + req.body.contact_relation + "', '" + req.body.message + "','2019-11-01 06:00:00','2019-11-01 06:00:00')", function (err) {
     //   if (err) {
@@ -36,7 +36,7 @@ module.exports = function (app) {
       res.json(results);
     });
 
-
+    //Sendgrid's API-KEY
     sgMail.setApiKey("");
     sendMail(req.body.contact_email, req.body.contact_subject, req.body.message, req.body.attachment_data, req.body.attachment_filename);
     console.log(req.body);
@@ -44,7 +44,6 @@ module.exports = function (app) {
 
   // setup e-mail data with unicode symbols
   var sendMail = (email, subject, message, attachment_data, attachment_filename) => {
-    // setup e-mail data with unicode symbols
     //    const file = document.querySelector('#myfile').files[0];
     console.log(attachment_data);
     console.log(attachment_filename);
@@ -66,17 +65,6 @@ module.exports = function (app) {
     sgMail.send(mailOptions);
   };
   module.exports = sendMail;
-
-  // function getBase64(file) {
-  //   var reader = new FileReader();
-  //   reader.readAsDataURL(file);
-  //   reader.onload = function () {
-  //     console.log(reader.result);
-  //   };
-  //   reader.onerror = function (error) {
-  //     console.log('Error: ', error);
-  //   };
-  //}
 
   // Delete the mail by id
   app.delete("/sendemail/:id", function (req, res) {
