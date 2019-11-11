@@ -1,12 +1,8 @@
 require("dotenv").config();
 var express = require("express");
 var exphbs = require("express-handlebars");
-var nodeMailer = require("nodemailer");
-var sgMail = require('@sendgrid/mail');
+
 var bodyParser = require("body-parser");
-var path = require("path");
-
-
 var db = require("./models");
 
 var app = express();
@@ -35,9 +31,9 @@ app.engine(
 );
 app.set("view engine", "handlebars");
 // Routes
-app.get('/'), (req, res) => {
-  res.render('main.handlebars');
-}
+// app.get('/'), (req, res) => {
+//   res.render('main.handlebars');
+// }
 
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
@@ -45,7 +41,6 @@ require("./routes/htmlRoutes")(app);
 var syncOptions = {
   force: false
 };
-
 
 // If running a test, set syncOptions.force to true
 // clearing the `testdb`
@@ -63,27 +58,5 @@ db.sequelize.sync(syncOptions).then(function () {
     );
   });
 });
-//Send-mails
-app.post("/send-email", function (req, res, next) {
-  console.log("Name :" + req.body.person_name)
-  console.log("Email :" + req.body.person_email_id);
-  console.log("Sub :" + req.body.subject_text);
-  console.log("Message :" + req.body.text_area);
-  res.json(req.body);
-
-  //update your API_KEY
-  sgMail.setApiKey("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");
-
-  // setup e-mail data with unicode symbols
-  var mailOptions = {
-    from: '"Members" <maskproject2@gmail.com>', // sender address
-    to: req.body.person_email_id, // list of receivers
-    subject: req.body.subject_text, // Subject line
-    text: req.body.text_area, // plaintext body
-    // html: '<b>Hello world ?</b>' // html body
-  };
-  sgMail.send(mailOptions);
-});
-
 
 module.exports = app;

@@ -2,18 +2,27 @@ var db = require("../models");
 
 module.exports = function (app) {
   // Load index page
-  app.get("/", function (req, res) {
+  app.get("/example", function (req, res) {
     // db.Evasion.findAll({}).then(function (dbEvasion) {
-    res.render("index", {
+    res.render("example", {
 
       // examples: dbEvasion
       // });
     });
   });
 
-  app.get("/send-email", function (req, res) {
+  app.get("/sendemail", function (req, res) {
     // db.Evasion.findAll({}).then(function (dbEvasion) {
-    res.render("index", {
+    res.render("email", {
+      msg: "Welcome!",
+      // examples: dbEvasion
+      // });
+    });
+  });
+
+  app.get("/card", function (req, res) {
+    // db.Evasion.findAll({}).then(function (dbEvasion) {
+    res.render("card", {
       msg: "Welcome!",
       // examples: dbEvasion
       // });
