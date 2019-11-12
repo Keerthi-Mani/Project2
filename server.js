@@ -47,7 +47,7 @@ app.set("view engine", "handlebars");
 app.get('/'), (req, res) => {
   res.render('main.handlebars');
 }
-//Routers
+//Routes
 require("./routes/text-apiRoutes")(app);
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
