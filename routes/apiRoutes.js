@@ -67,6 +67,26 @@ module.exports = function (app) {
       res.json(dbEvasion);
     });
   });
+    // Get mails by id
+  app.get("/sendemail/id/:id", function (req, res) {
+    db.Evasion.findOne({
+      where: {
+        id: req.params.id
+      }
+    }).then(function (dbEvasion) {
+      res.json(dbEvasion);
+    });
+  });
+    // Get mails by relation
+  app.get("/sendemail/relation/:type", function (req, res) {
+    db.Evasion.findOne({
+      where: {
+        contact_relation: req.params.type
+      }
+    }).then(function (dbEvasion) {
+      res.json(dbEvasion);
+    });
+  });
   //Create new mails in the database
   app.post("/sendemail", function (req, res, next) {
     // db.sequelize.query("INSERT INTO sequelize_evasion.evasions (contact_name, contact_email, contact_relation, message, createdAt, updatedAt) VALUES('" + req.body.contact_name + "', '" + req.body.contact_email + "', '" + req.body.contact_relation + "', '" + req.body.message + "','2019-11-01 06:00:00','2019-11-01 06:00:00')", function (err) {
@@ -114,14 +134,4 @@ module.exports = function (app) {
   };
   module.exports = sendMail;
 
-  // Delete the mail by id
-  app.delete("/sendemail/:id", function (req, res) {
-    db.Evasion.destroy({
-      where: {
-        id: req.params.id
-      }
-    }).then(function (dbEvasion) {
-      res.json(dbEvasion);
-    });
-  });
-};
+  
