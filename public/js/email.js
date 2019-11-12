@@ -42,12 +42,12 @@ $("#send-btn").on("click", async function (event) {
             console.log('Error: ', error);
         };
     }
-    //Empty each input box by replacing the value with an empty string
-    // $("#name").val("");
-    // $("#email").val("");
-    // $("#relation").val("");
-    // $("#subject").val("");
-    // $("#text-message").val("");
+    Empty each input box by replacing the value with an empty string
+    $("#name").val("");
+    $("#email").val("");
+    $("#relation").val("");
+    $("#subject").val("");
+    $("#text-message").val("");
 });
 
 document.getElementById('button').addEventListener('click', function () {
@@ -69,3 +69,64 @@ async function getBase64(file) {
         console.log('Error: ', error);
     };
 }
+
+//View all the emails that are sent through nodemailer
+$.get("/all", function (data) {
+    // console.log("GET /all");
+    for (var i = 0; i < data.length; i++) {
+        var emailSection = $("<div>");
+        emailSection.addClass("section");
+        emailSection.attr("id", "email-well-" + i);
+        $("#example-list").append(emailSection);
+        $("#email-well-" + i).append("<h2>" + (i + 1) + "." + "Name : " + data[i].contact_name + "</h2>");
+        $("#email-well-" + i).append("<h3>" + "Email :" + data[i].contact_email + "</h3>");
+        $("#email-well-" + i).append("<h3>" + "Relation :" + data[i].contact_relation + "</h3>");
+        $("#email-well-" + i).append("<h3>" + "Message :" + data[i].message + "</h3>");
+    }
+});
+
+//View emails by name
+var url = "/sendemail/" + name;
+$.get("url", function (data) {
+    // console.log(data);
+    for (var i = 0; i < data.length; i++) {
+        var emailSection = $("<div>");
+        emailSection.addClass("section");
+        emailSection.attr("id", "email-well-" + i);
+
+        $("#email-well-" + i).append("<h2>" + (i + 1) + "." + "Name : " + data[i].contact_name + "</h2>");
+        $("#email-well-" + i).append("<h3>" + "Email :" + data[i].contact_email + "</h3>");
+        $("#email-well-" + i).append("<h3>" + "Message :" + data[i].message + "</h3>");
+        $("#email-section").append(emailSection);
+    }
+    //console.log();
+});
+
+//View emails by id
+var url = "/sendemail/id" + id;
+$.get("url", function (data) {
+    for (var i = 0; i < data.length; i++) {
+        var emailSection = $("<div>");
+        emailSection.addClass("section");
+        emailSection.attr("id", "email-well-" + i);
+        $("#email-section").append(emailSection);
+        $("#email-well-" + i).append("<h2>" + (i + 1) + "." + "Name : " + data[i].contact_name + "</h2>");
+        $("#email-well-" + i).append("<h3>" + "Email :" + data[i].contact_email + "</h3>");
+        $("#email-well-" + i).append("<h3>" + "Message :" + data[i].message + "</h3>");
+
+    }
+});
+
+//View emails by relation
+var url = "/sendemail/relation" + type;
+$.get("url", function (data) {
+for (var i = 0; i < data.length; i++) {
+        var emailSection = $("<div>");
+        emailSection.addClass("section");
+        emailSection.attr("id", "email-well-" + i);
+        $("#email-section").append(emailSection);
+        $("#email-well-" + i).append("<h2>" + (i + 1) + "." + "Name : " + data[i].contact_name + "</h2>");
+        $("#email-well-" + i).append("<h3>" + "Email :" + data[i].contact_email + "</h3>");
+        $("#email-well-" + i).append("<h3>" + "Message :" + data[i].message + "</h3>");
+}
+});
