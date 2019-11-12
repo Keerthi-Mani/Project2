@@ -2,10 +2,10 @@ var db = require("../models");
 
 module.exports = function (app) {
   // Load index page
-  app.get("/example", function (req, res) {
+  app.get("/", function (req, res) {
     db.Evasion.findAll({}).then(function (dbEvasion) {
-      res.render("example", {
-        examples: dbEvasion
+      res.render("evasion", {
+        evasion: dbEvasion
       });
     });
   });
@@ -21,19 +21,6 @@ module.exports = function (app) {
   // Load text message page
   app.get('/text', function (req, res) {
     res.render("textmessage")
-  })
-
-  // Load example page and pass in an example by id
-  app.get("/example/:id", function (req, res) {
-    db.Evasion.findOne({
-      where: {
-        id: req.params.id
-      }
-    }).then(function (dbEvasion) {
-      res.render("example", {
-        example: dbEvasion
-      });
-    });
   });
 
   // Render 404 page for any unmatched routes

@@ -53,18 +53,15 @@
       </div>
     </div>
   </div>
-
-  {{!-- <div class="row">
-    <div class="col-md-12">
-      <div class="card">
-        <div class="card-heading">
-          <h1>Emails</h1>
-        </div>
-        <div id="sent-mail">
-        </div>
-      </div>
-    </div>
-  </div> --}}
+  <h3>Examples:</h3>
+  <ul id="example-list" class="list-group">
+    {{#each examples}}
+    <li data-id="{{this.id}}" class="list-group-item">
+      <a href="example/{{this.id}}">{{this.text}}</a>
+      <button class="btn btn-danger float-right delete">ｘ</button>
+    </li>
+    {{/each}}
+  </ul>
 </div>
 </div>
 

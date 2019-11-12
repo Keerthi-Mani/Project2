@@ -10,6 +10,7 @@ module.exports = function (app) {
       res.json(dbEvasion);
     });
   });
+
   // Get mails by name
   app.get("/sendemail/:name", function (req, res) {
     db.Evasion.findAll({
@@ -17,11 +18,12 @@ module.exports = function (app) {
         contact_name: req.params.name
       }
     }).then(function (dbEvasion) {
+
       res.json(dbEvasion);
     });
   });
   // Get mails by id
-  app.get("/sendemail/:id", function (req, res) {
+  app.get("/sendemail/id/:id", function (req, res) {
     db.Evasion.findOne({
       where: {
         id: req.params.id
