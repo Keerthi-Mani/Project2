@@ -10,8 +10,16 @@ $(document).ready(function() {
       var imagClicked = console.log($(this).attr('src'));
       //$('.thumbnail').remove();
       // Email code should go here
-
     })
   });
+  $("#text-button").click(function ()
+    {
+        res.render('/textmessage');
+  })
+  $("#email-button").click(function ()
+    {
+        res.render('email.handlebars');
+  })
 });
+
 
