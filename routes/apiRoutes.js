@@ -7,7 +7,10 @@ module.exports = function (app) {
   app.get("/all", function (req, res) {
     //console.log("APP.GET /ALL");
     db.Evasion.findAll({}).then(function (dbEvasion) {
-      res.json(dbEvasion);
+      res.render("email", {
+        examples: dbEvasion
+      });
+      //res.json(dbEvasion);
     });
   });
 
@@ -18,8 +21,10 @@ module.exports = function (app) {
         contact_name: req.params.name
       }
     }).then(function (dbEvasion) {
-
-      res.json(dbEvasion);
+      res.render("email", {
+        examples: dbEvasion
+      });
+      //res.json(dbEvasion);
     });
   });
   // Get mails by id
@@ -29,9 +34,24 @@ module.exports = function (app) {
         id: req.params.id
       }
     }).then(function (dbEvasion) {
-      res.json(dbEvasion);
+      res.render("email", {
+        examples: dbEvasion
+      });
+      //res.json(dbEvasion);
     });
   });
+  app.get("/sendemail/relation/:type", function (req, res) {
+    db.Evasion.findAll({
+      where: {
+        contact_relation: req.params.type
+      }
+    }).then(function (dbEvasion) {
+      res.render("email", {
+        examples: dbEvasion
+      });
+      //res.json(dbEvasion);
+    });
+  })
   //Create new mails in the database
   app.post("/sendemail", function (req, res) {
     // db.sequelize.query("INSERT INTO sequelize_evasion.evasions (contact_name, contact_email, contact_relation, message, createdAt, updatedAt) VALUES('" + req.body.contact_name + "', '" + req.body.contact_email + "', '" + req.body.contact_relation + "', '" + req.body.message + "','2019-11-01 06:00:00','2019-11-01 06:00:00')", function (err) {

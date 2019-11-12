@@ -53,15 +53,19 @@
       </div>
     </div>
   </div>
-  <h3>Examples:</h3>
-  <ul id="example-list" class="list-group">
+
+  <ul>
+    <h3>Search Emails By Name/Id/Relation</h3>
     {{#each examples}}
-    <li data-id="{{this.id}}" class="list-group-item">
-      <a href="example/{{this.id}}">{{this.text}}</a>
-      <button class="btn btn-danger float-right delete">ｘ</button>
+    <li>
+      <p>Name: {{this.contact_name}}</p>
+      <p>Relation: {{this.contact_relation}}</p>
+      <p>Message: {{this.message}}</p>
     </li>
     {{/each}}
   </ul>
+
+
 </div>
 </div>
 
