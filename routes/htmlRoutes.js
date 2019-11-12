@@ -8,6 +8,14 @@ module.exports = function (app) {
     res.render("home")
   })
 
+  // Signup page
+    app.get('/signup', (req, res) => {
+      if (req.user) {
+        res.redirect("/members");
+      }
+      res.sendFile(path.join(__dirname, "../public/signup.html"));
+    })
+
   // Load index page
   app.get("/example", function (req, res) {
     db.Evasion.findAll({}).then(function (dbEvasion) {

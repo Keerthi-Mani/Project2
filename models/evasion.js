@@ -1,6 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
   var Evasion = sequelize.define("Evasion", {
-
     contact_name: {
       type: DataTypes.STRING,
       allowNull: false,
