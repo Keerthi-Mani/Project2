@@ -1,5 +1,7 @@
 require("dotenv").config();
 var express = require("express");
+var session = require("express-session");
+var passport = require("./config/passport");
 var exphbs = require("express-handlebars");
 var sgMail = require('@sendgrid/mail');
 var nodeMailer = require("nodemailer");
@@ -18,6 +20,11 @@ app.use(express.urlencoded({
 }));
 app.use(express.json());
 app.use(express.static("public"));
+
+// sessions to keep track of user login status
+app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 //Middleware
 app.use(bodyParser.urlencoded({

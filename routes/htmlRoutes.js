@@ -1,4 +1,6 @@
 var db = require("../models");
+var path = require("path");
+var isAuthenticated = require("../config/middleware/isAuthenticated");
 
 module.exports = function (app) {
   // Home page
@@ -31,6 +33,17 @@ module.exports = function (app) {
       // });
     });
   });
+
+  app.get("/login", function (req, res) {
+    if (req.user) {
+      res.redirect("/members");
+    }
+    res.sendFile(path.join(__dirname, "../public/login.html"));
+  });
+
+  app.get("/members", isAuthenticated, function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/members.html"));
+  })
 
   // Load text message page
   app.get('/text', function (req, res) {
