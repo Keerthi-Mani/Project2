@@ -137,9 +137,14 @@ body {
 
 }
 
+#text:hover{
+  padding:18% 0% 0% 0%;
+  color:transparent;
+}
+
 #logo {
-  margin-top: 80px;
-  margin-left: 30%;
+  margin-top: 5%;
+  margin-left: 5%;
   border:0;
   float: center;
 
