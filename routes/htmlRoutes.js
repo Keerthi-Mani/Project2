@@ -18,15 +18,6 @@ module.exports = function (app) {
     });
   });
 
-  app.get("/card", function (req, res) {
-    // db.Evasion.findAll({}).then(function (dbEvasion) {
-    res.render("card", {
-      msg: "Welcome!",
-      // examples: dbEvasion
-      // });
-    });
-  });
-
   // Load text message page
   app.get('/text', function (req, res) {
     res.render("textmessage")

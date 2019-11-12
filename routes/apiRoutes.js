@@ -5,22 +5,33 @@ var Evasion = require("../models/evasion");
 module.exports = function (app) {
   // Get all mails
   app.get("/all", function (req, res) {
+    //console.log("APP.GET /ALL");
     db.Evasion.findAll({}).then(function (dbEvasion) {
       res.json(dbEvasion);
     });
   });
   // Get mails by name
   app.get("/sendemail/:name", function (req, res) {
+    db.Evasion.findAll({
+      where: {
+        contact_name: req.params.name
+      }
+    }).then(function (dbEvasion) {
+      res.json(dbEvasion);
+    });
+  });
+  // Get mails by id
+  app.get("/sendemail/:id", function (req, res) {
     db.Evasion.findOne({
       where: {
-        contact_name: req.params.contact_name
+        id: req.params.id
       }
     }).then(function (dbEvasion) {
       res.json(dbEvasion);
     });
   });
   //Create new mails in the database
-  app.post("/sendemail", function (req, res, next) {
+  app.post("/sendemail", function (req, res) {
     // db.sequelize.query("INSERT INTO sequelize_evasion.evasions (contact_name, contact_email, contact_relation, message, createdAt, updatedAt) VALUES('" + req.body.contact_name + "', '" + req.body.contact_email + "', '" + req.body.contact_relation + "', '" + req.body.message + "','2019-11-01 06:00:00','2019-11-01 06:00:00')", function (err) {
     //   if (err) {
     //     console.log(err.message);
