@@ -61,3 +61,35 @@ h3 {
 }
 
 */
+
+body {
+  background: url("https://media.giphy.com/media/l4KihuqeuJEi9qLSM/giphy.gif") no-repeat center center fixed;
+  position: relative;
+  margin-top: auto;
+  margin-bottom: auto;
+  overflow: scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+}
+
+#logo {
+  margin-top: 80px;
+  margin-left: 30%;
+  border:0;
+  float: center;
+
+}
+
+
+#text:hover{
+  padding:18% 0% 0% 0%;
+  color:transparent;
+}
+
+#email-bg-header{
+  background: url("https://media.giphy.com/media/l0Ex8E17mqY09WNTG/giphy.gif");
+
+}
