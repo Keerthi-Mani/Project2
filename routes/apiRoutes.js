@@ -32,12 +32,12 @@ module.exports = function (app) {
       contact_relation: req.body.contact_relation,
       message: req.body.message
     }).then(function (results) {
-      console.log(results);
+      //console.log(results);
       res.json(results);
     });
 
     //Sendgrid's API-KEY
-    sgMail.setApiKey("");
+    sgMail.setApiKey(process.env.SG_API_KEY);;
     sendMail(req.body.contact_email, req.body.contact_subject, req.body.message, req.body.attachment_data, req.body.attachment_filename);
     console.log(req.body);
   });
