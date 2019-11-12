@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "",
+    "password": "lolwut123",
     "database": "sequelize_evasion",
     "host": "localhost",
     "dialect": "mysql"

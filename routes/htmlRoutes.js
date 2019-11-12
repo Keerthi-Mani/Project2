@@ -1,6 +1,11 @@
 var db = require("../models");
 
 module.exports = function (app) {
+  // Home page
+   app.get('/', function (req, res) {
+    res.render("home")
+  })
+
   // Load index page
   app.get("/example", function (req, res) {
     db.Evasion.findAll({}).then(function (dbEvasion) {
@@ -15,6 +20,15 @@ module.exports = function (app) {
       res.render("email", {
         //examples: dbEvasion
       });
+    });
+  });
+
+  app.get("/card", function (req, res) {
+    // db.Evasion.findAll({}).then(function (dbEvasion) {
+    res.render("card", {
+      msg: "Welcome!",
+      // examples: dbEvasion
+      // });
     });
   });
 
